@@ -1,6 +1,7 @@
 require 'spud_core'
 require 'rghost'
 require 'paperclip'
+require 'rabl'
 module Spud
 	module Reports
 	  class Engine < ::Rails::Engine
