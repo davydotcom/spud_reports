@@ -25,6 +25,7 @@ class JobsController < Spud::ApplicationController
 		@job = SpudPrintJob.find(params[:id])
 		if !@job.blank?
 			@job.update_attributes(:status => 1)
+			File.delete(File.join(Rails.root,'public','report_jobs',@job.attachment_file_name))
 		end
 		render :status => 200,:text => nil
 	end
