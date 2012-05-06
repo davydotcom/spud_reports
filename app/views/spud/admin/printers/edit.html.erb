@@ -1,0 +1,12 @@
+
+  
+
+  <%=form_for @printer,:url => spud_admin_printer_path(:id => @printer.id),:html=>{:class=>"form-horizontal"} do |f|%>
+    <%=render :partial => "form",:locals => {:f => f}%>
+    <div class="form-actions">
+    	<%=f.submit "Save Printer", :class=>"btn btn-primary"%> or <%=link_to "cancel",spud_admin_printers_path,:class => "btn"%>
+    </div>
+  <%end%>
+
+ 
+

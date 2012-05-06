@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  spud_printer_id: 1
+  status: 1
+  pages: 1
+  attachment_content_type: MyString
+  attachment_file_size: 1
+  attachment_file_name: MyString
+  user_id: 1
+
+two:
+  name: MyString
+  spud_printer_id: 1
+  status: 1
+  pages: 1
+  attachment_content_type: MyString
+  attachment_file_size: 1
+  attachment_file_name: MyString
+  user_id: 1

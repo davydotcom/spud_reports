@@ -1,0 +1,39 @@
+
+
+<%=content_for :detail do%>
+	<table class="admin-table data-table" id="printertable">
+		<thead>
+			<tr>
+				
+				<th>Name</th>
+				<th>Status</th>
+				<th>Pages</th>
+				<th>User</th>
+				<th>Created At</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%@jobs.each do |job|%>
+				<tr id="row_printer_<%=printer.id%>">
+					
+					<td><%=job.name%></td>
+					<td><%=job.status%></td>
+					<td><%=job.pages%></td>
+					
+					<td><%=job.user.login if !job.user.blank?%></td>
+					<td><%=timestamp job.created_at%>
+					<td align="right"><%=link_to "Cancel",spud_admin_printer_job_path(:id => job.id),:method => :delete,:confirm => "Are you sure you want to cancel this print job?",:class => "btn btn-danger"%></td>
+				</tr>
+			<%end%>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="6">
+					<%=will_paginate @jobs%>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+<%end%>

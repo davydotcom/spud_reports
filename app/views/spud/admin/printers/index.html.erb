@@ -1,0 +1,39 @@
+<%=content_for :data_controls do%>
+<%=link_to "New Printer",new_spud_admin_printer_path(),:class => "btn btn-primary",:title => "New Printer"%>
+<%end%>
+<%=content_for :detail do%>
+	<table class="admin-table data-table" id="printertable">
+		<thead>
+			<tr>
+				
+				<th>Name</th>
+				<th>Status</th>
+				<th>Jobs</th>
+				<th>Access Token</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%@printers.each do |printer|%>
+				<tr id="row_printer_<%=printer.id%>">
+					
+					<td><%=link_to printer.name,edit_spud_admin_printer_path(:id => printer.id)%></td>
+					<td><%=printer.status%></td>
+					<td><%=link_to printer.spud_print_jobs.count, spud_admin_printer_jobs_path(:printer_id => printer.id)%></td>
+					
+					<td><%=printer.access_token%></td>
+					
+					<td align="right"><%=link_to "Remove",spud_admin_printer_path(:id => printer.id),:method => :delete,:confirm => "Are you sure you want to remove this printer?",:class => "btn btn-danger"%></td>
+				</tr>
+			<%end%>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="6">
+					<%=will_paginate @printers%>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+<%end%>
