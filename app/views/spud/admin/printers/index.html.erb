@@ -19,7 +19,7 @@
 					
 					<td><%=link_to printer.name,edit_spud_admin_printer_path(:id => printer.id)%></td>
 					<td><%=printer.status%></td>
-					<td><%=link_to printer.spud_print_jobs.count, spud_admin_printer_jobs_path(:printer_id => printer.id)%></td>
+					<td><%=link_to printer.active_jobs.count, spud_admin_printer_jobs_path(:printer_id => printer.id)%></td>
 					
 					<td><%=printer.access_token%></td>
 					

@@ -10,7 +10,7 @@ class Spud::Admin::Printers::JobsController < Spud::Admin::ApplicationController
 	def index
 		add_breadcrumb "#{@printer.name}", :spud_admin_printer_jobs_path
 		@page_name = "Print Jobs For - #{@printer.name}"
-		@jobs = @printer.spud_print_jobs.paginate(:page => params[:page])
+		@jobs = @printer.active_jobs.paginate(:page => params[:page])
 		respond_with @jobs
 	end
 
