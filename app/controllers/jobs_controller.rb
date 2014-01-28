@@ -1,15 +1,22 @@
 class JobsController < Spud::ApplicationController
 	def index
-		
+
 		trys = 0
 		while(trys < 30)
-			SpudPrinter.uncached do 
-				@printers = SpudPrinter.where(:access_token => params[:keys]).includes(:active_jobs).all	
+			SpudPrinter.uncached do
+				@printers = SpudPrinter.where(:access_token => params[:keys]).includes(:active_jobs).all
 				job_count = 0
 				puts "printer query each method"
 				@printers.each do |printer|
 					puts("Checking job count on printer")
-					job_count += printer.active_jobs.all.count
+					job_count = 0
+					printer.active_jobs.all.each do |job|
+						if File.exist?(File.join(Rails.root,'public','report_jobs',@job.attachment_file_name))
+							job_count += 1
+						else
+							job.update_attributes(:status => 1)
+						end
+					end
 					puts(job_count)
 				end
 				if job_count > 0
