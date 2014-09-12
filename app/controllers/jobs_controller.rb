@@ -11,7 +11,7 @@ class JobsController < Spud::ApplicationController
 					puts("Checking job count on printer")
 					job_count = 0
 					printer.active_jobs.all.each do |job|
-						if File.exist?(File.join(Rails.root,'public','report_jobs',@job.attachment_file_name))
+						if File.exist?(File.join(Rails.root,'public','report_jobs',job.attachment_file_name))
 							job_count += 1
 						else
 							job.update_attributes(:status => 1)
